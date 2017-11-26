@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
+import { CabecalhoComponent } from './cabecalho.component';
 
 @NgModule({
-  imports: [
-  ],
-  declarations: []
+  declarations: [CabecalhoComponent],
+  exports: [CabecalhoComponent]
 })
 export class CabecalhoModule { }

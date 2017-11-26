@@ -4,17 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutes } from './app.router';
 
 import { AppComponent } from './app.component';
-import { ListagemComponent } from './listagem/listagem.component';
+import { ListagemModule } from './listagem/listagem.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ListagemComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutes
+    AppRoutes,
+    ListagemModule
   ],
   providers: [],
   bootstrap: [AppComponent]

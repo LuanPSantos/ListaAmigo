@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-    // tslint:disable-next-line:component-selector
-    selector: 'cabecalho',
+    selector: 'app-cabecalho',
     templateUrl: './cabecalho.component.html',
-    styleUrls: ['cabecalho.component.css']
+    styleUrls: ['./cabecalho.component.css']
 })
 export class CabecalhoComponent {
-    titulo: string;
+    @Input() titulo: string;
 }

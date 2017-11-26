@@ -1,3 +1,17 @@
 header{
     background-color: #c400b0;
+    height: 40px;
+    line-height: 40px;
+    width: 360px;
+    margin: 0 auto;
+    padding: 10px 10px 10px 20px;
+}
+
+h1{
+    margin: auto 0 auto 0;
+    padding: 0;
+    color: white;
+    font-size: 18pt;
+    vertical-align: middle;
+    display: inline-block;
 }

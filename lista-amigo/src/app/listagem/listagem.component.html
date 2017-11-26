@@ -1,2 +1,9 @@
-<!-- <cabecalho></cabecalho> -->
-<h1>FELASKJ</h1>
+<app-cabecalho titulo="Amigos"></app-cabecalho>
+<section>
+    <div *ngFor="let amigo of amigos">
+        <label>{{amigo.nome}}</label>
+        <div>
+            <label>...</label>
+        </div>
+    </div>
+</section>
