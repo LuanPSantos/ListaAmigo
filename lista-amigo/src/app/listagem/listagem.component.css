@@ -1,0 +1,76 @@
+section{
+
+    height: 40px;
+    line-height: 40px;
+    width: 360px;
+    margin: 0 auto;
+    padding: 10px;
+  
+}
+
+.amigo-item{
+    display: block;
+    background-color: white;
+    width: calc(100% - 10px);
+    height: 40px;
+    margin: 0 0 3px 0;
+    padding: 5px;
+    clear: both;
+}
+
+.amigo-item:hover{
+    box-shadow: 0 5px 5px rgba(0,0,0,0.02), 0 3px 3px rgba(0,0,0,0.10);
+}
+
+.amigo-nome{
+    float: left;
+    display: block;
+    margin-left: 10px;
+}
+
+.opcoes-container{
+    float: right;
+    height: 40px;
+    margin-right: 20px;
+}
+
+.opcoes-botao{
+    background-color: white;
+    display: block;
+    margin-top: calc(50% - 5px);
+    height: 25px;
+    line-height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+
+.opcoes-botao:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+.opcoes-botao label{
+    display: block;
+    position: relative;
+    left: 7px;
+    top: -3px;
+}
+
+.opcoes-menu{
+    clear: both;
+    display: block;
+    position: relative;
+    width: 130px;
+    left: 340px;
+    top: -20px;
+    background-color:white;
+}
+
+.opcoes-item{
+    display: block;
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
+.opcoes-item:hover{
+    background-color: rgb(240, 240, 240);
+}

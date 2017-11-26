@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Amigo } from './Amigo';
 
 @Component({
   selector: 'app-listagem',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListagemComponent implements OnInit {
 
-  constructor() { }
+  amigos: Amigo[] = [
+    {id: null, nome: 'Luan'}
+  ];
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
