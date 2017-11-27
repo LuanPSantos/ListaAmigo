@@ -20,6 +20,7 @@ section{
 
 .amigo-item:hover{
     box-shadow: 0 5px 5px rgba(0,0,0,0.02), 0 3px 3px rgba(0,0,0,0.10);
+    cursor: pointer;
 }
 
 .amigo-nome{
@@ -69,6 +70,10 @@ section{
     display: block;
     width: calc(100% - 20px);
     padding: 10px;
+}
+
+.block{
+    display: none;
 }
 
 .opcoes-item:hover{

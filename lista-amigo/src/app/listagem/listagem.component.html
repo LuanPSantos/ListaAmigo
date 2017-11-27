@@ -3,13 +3,9 @@
     <div class="amigo-item" *ngFor="let amigo of amigos">
         <label class="amigo-nome">{{amigo.nome}}</label>
         <div class="opcoes-container">
-            <div class="opcoes-botao">
+            <div class="opcoes-botao" (click)="toggle(menu)">
                 <label>...</label>
             </div>
-        </div>
-        <div class="opcoes-menu shadow">
-            <label class="opcoes-item">Editar</label>
-            <label class="opcoes-item">Excluir</label>
         </div>
     </div>
 </section>
