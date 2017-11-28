@@ -25,13 +25,12 @@ export class ListagemComponent {
   ];
 
   toggle(item: ItemAmigo){
-    item.hidden = !item.hidden;
+    
+     if(this.lestOpen != null && this.lestOpen.hidden == false && this.lestOpen != item){
+       this.lestOpen.hidden = true; 
+     }
 
-    if(this.lestOpen != null){
-      this.lestOpen.hidden = true;
-      this.lestOpen = item;
-    }else{
-      this.lestOpen = item;
-    }
+    item.hidden = !item.hidden;
+    this.lestOpen = item;
   }
 }
