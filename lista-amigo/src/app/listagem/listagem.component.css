@@ -29,10 +29,18 @@ section{
     margin-left: 10px;
 }
 
+.amigo-nome:hover{
+    cursor: pointer;
+}
+
 .opcoes-container{
     float: right;
     height: 40px;
     margin-right: 20px;
+}
+
+.opcoes-container:hover{
+    cursor: pointer;
 }
 
 .opcoes-botao{
@@ -56,6 +64,10 @@ section{
     top: -3px;
 }
 
+.opcoes-botao label:hover{
+    cursor: pointer;
+}
+
 .opcoes-menu{
     clear: both;
     display: block;
@@ -66,10 +78,18 @@ section{
     background-color:white;
 }
 
+.opcoes-menu:hover{
+    cursor: pointer;
+}
+
 .opcoes-item{
     display: block;
     width: calc(100% - 20px);
     padding: 10px;
+}
+
+.opcoes-item:hover{
+    cursor: pointer;
 }
 
 .block{

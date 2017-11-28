@@ -1,4 +1,4 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { ItemAmigo } from './ItemAmigo';
 import * as $ from 'jquery';
 
@@ -14,21 +14,21 @@ export class ListagemComponent {
   amigos: ItemAmigo[] = [
     {
       amigo: {
-        id: 1, 
+        id: 1,
         nome: 'Luan'
-      }, 
+      },
       hidden: true
     },
-    {amigo: {id: 2, nome: 'Ana'}, hidden: true},
-    {amigo: {id: 3, nome: 'Minon'}, hidden: true},
-    {amigo: {id: 4, nome: 'Rosa'}, hidden: true}
+    { amigo: { id: 2, nome: 'Ana' }, hidden: true },
+    { amigo: { id: 3, nome: 'Minon' }, hidden: true },
+    { amigo: { id: 4, nome: 'Rosa' }, hidden: true }
   ];
 
-  toggle(item: ItemAmigo){
-    
-     if(this.lestOpen != null && this.lestOpen.hidden == false && this.lestOpen != item){
-       this.lestOpen.hidden = true; 
-     }
+  toggle(item: ItemAmigo) {
+
+    if (this.lestOpen != null && this.lestOpen.hidden == false && this.lestOpen != item) {
+      this.lestOpen.hidden = true;
+    }
 
     item.hidden = !item.hidden;
     this.lestOpen = item;
