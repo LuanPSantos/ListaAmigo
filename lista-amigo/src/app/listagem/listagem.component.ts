@@ -1,6 +1,8 @@
 import { Component, AfterViewInit} from '@angular/core';
 import { ItemAmigo } from './ItemAmigo';
 import { Http } from '@angular/http';
+import { Headers } from '@angular/http';
+import { Amigo } from './Amigo';
 
 @Component({
   selector: 'app-listagem',
@@ -10,12 +12,33 @@ import { Http } from '@angular/http';
 export class ListagemComponent {
 
   lestOpen: ItemAmigo = null;
+  headers2: Headers;
 
   constructor(http: Http){
-    let stream = http.get('http://localhost:8080/lista-amigo/app/amigo/');
+
+    this.headers2 = new Headers();
+    this.headers2.append("systemId", "3");
+    this.headers2.append("unidadeNegocio", "4");
+    let stream = http.get('http://10.27.0.127:9000/api/rest/portabilidade/obterHistoricoEventosPortabilidade/52299',{
+      headers: this.headers2
+    });
     stream.subscribe(response => {
-      this.amigos = response.json();
-      console.log(this.amigos);
+      let resp = response.json();
+
+      
+      for(let i = 0; i < resp.historicoEventosPortabilidade.length; i++){
+        let n = resp.historicoEventosPortabilidade[i].codigoStatusBilhete;
+
+        let a = new Amigo();
+        a.nome = n;
+        a.id = i;
+
+        let item = new ItemAmigo();
+        item.amigo = a;
+        item.hidden = true;
+        this.amigos.push(item);
+      }
+      
     });
   }
 
