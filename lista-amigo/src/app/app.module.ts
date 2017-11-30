@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutes } from './app.router';
 
@@ -14,7 +15,8 @@ import { ListagemModule } from './listagem/listagem.module';
   imports: [
     BrowserModule,
     AppRoutes,
-    ListagemModule
+    ListagemModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
