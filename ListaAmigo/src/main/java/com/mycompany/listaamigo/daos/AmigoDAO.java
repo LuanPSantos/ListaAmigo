@@ -35,7 +35,7 @@ public class AmigoDAO {
                     }
                 }
             }
-
+            Logger.getLogger(Conexao.class.getName()).log(Level.INFO, "Amigos selecionados: {0}", amigos);
         } catch (SQLException ex) {
             Logger.getLogger(AmigoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,11 +57,11 @@ public class AmigoDAO {
                         Amigo amigo = new Amigo();
                         amigo.setId(result.getInt("id"));
                         amigo.setNome(result.getString("nome"));
+                        Logger.getLogger(Conexao.class.getName()).log(Level.INFO, "Amigo selecionado: {0}", amigo);
                         return amigo;
                     }
                 }
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(AmigoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -85,7 +85,7 @@ public class AmigoDAO {
                     }
                 }
             }
-
+            Logger.getLogger(Conexao.class.getName()).log(Level.INFO, "Amigo inserido: {0}", amigo);
         } catch (SQLException ex) {
             Logger.getLogger(AmigoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,7 +103,7 @@ public class AmigoDAO {
                 statement.execute();
 
             }
-
+            Logger.getLogger(Conexao.class.getName()).log(Level.INFO, "Amigo atualizado: {0}", amigo);
         } catch (SQLException ex) {
             Logger.getLogger(AmigoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,7 +118,7 @@ public class AmigoDAO {
                 statement.execute();
 
             }
-
+            Logger.getLogger(Conexao.class.getName()).log(Level.INFO, "Amigo deletado");
         } catch (SQLException ex) {
             Logger.getLogger(AmigoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

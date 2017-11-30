@@ -56,10 +56,12 @@ public class AmigoResource {
     }
 
     @PUT
+    @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateAmigo(Amigo amigo) {
+    public Response updateAmigo(@PathParam("id") int id, Amigo amigo) {
         AmigoService service = new AmigoService();
+        amigo.setId(id);
         service.updateAmigo(amigo);
 
         return Response.ok().build();
