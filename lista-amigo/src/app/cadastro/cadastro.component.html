@@ -1,0 +1,10 @@
+<app-cabecalho titulo="Cadastro"></app-cabecalho>
+<section>
+    <div class="conteiner">
+        <div>
+            <label class="nome">Nome</label>
+            <input (input)="amigo.nome = $event.target.value" type="text" placeholder="..." />
+        </div>
+    </div>
+</section>
+<button (click)="salvar()" class="button">Salvar</button>

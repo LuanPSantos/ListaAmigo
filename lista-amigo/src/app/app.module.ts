@@ -6,6 +6,8 @@ import { AppRoutes } from './app.router';
 
 import { AppComponent } from './app.component';
 import { ListagemModule } from './listagem/listagem.module';
+import { CadastroModule } from './cadastro/cadastro.module';
+import { AtualizarModule } from './atualizar/atualizar.module';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { ListagemModule } from './listagem/listagem.module';
     BrowserModule,
     AppRoutes,
     ListagemModule,
-    HttpModule
+    HttpModule,
+    CadastroModule,
+    AtualizarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
