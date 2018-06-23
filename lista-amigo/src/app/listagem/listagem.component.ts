@@ -8,7 +8,7 @@ import { AmigoService } from '../services/amigo.service';
   selector: 'app-listagem',
   templateUrl: './listagem.component.html',
   styleUrls: ['./listagem.component.css'],
-  providers: [ AmigoService ]
+  providers: [AmigoService]
 })
 export class ListagemComponent {
 
@@ -18,11 +18,11 @@ export class ListagemComponent {
   router: Router;
 
   constructor(service: AmigoService, router: Router) {
-    this.service = service;    
+    this.service = service;
     this.router = router;
 
     this.amigos = this.service.buscarTodos();
-  }  
+  }
 
   toggle(item: ItemAmigo) {
 
@@ -37,18 +37,18 @@ export class ListagemComponent {
   editar(item: ItemAmigo) {
     this.toggle(item);
 
-    this.router.navigate(['/atualizar'], {queryParams: {id : item.amigo.id}});
+    this.router.navigate(['/atualizar'], { queryParams: { id: item.amigo.id } });
   }
 
   excluir(item: ItemAmigo) {
     this.toggle(item);
-    
+
     this.service.excluir(item.amigo);
 
-    this.amigos.splice(this.amigos.indexOf(item), 1);    
+    this.amigos.splice(this.amigos.indexOf(item), 1);
   }
 
-  cadastrar(){
+  cadastrar() {
     this.router.navigate(['/cadastro']);
   }
 }

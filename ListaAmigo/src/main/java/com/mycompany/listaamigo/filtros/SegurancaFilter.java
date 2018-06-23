@@ -14,7 +14,7 @@ public class SegurancaFilter implements ContainerResponseFilter, ContainerReques
     public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {     
         responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
         responseContext.getHeaders().add("Access-Control-Allow-Methods", "POST, PUT, DELETE, GET");
-        responseContext.getHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+        responseContext.getHeaders().add("Access-Control-Allow-Headers", "*");
     }
 
     @Override
