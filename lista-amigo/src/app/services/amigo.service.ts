@@ -1,85 +1,34 @@
-import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Amigo } from '../listagem/Amigo';
-import { ItemAmigo } from '../listagem/ItemAmigo';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AmigoService {
 
-    private http: Http;
-    private router: Router;
     private url = 'http://localhost:8080/lista-amigo/app/amigo/';
 
-    constructor(http: Http, router: Router) {
-        this.http = http;
-        this.router = router;
+    constructor(private http: HttpClient) {
     }
 
-    salvar(amigo: Amigo) {
-        const headers: Headers = new Headers;
-        headers.append('Content-Type', 'application/json');
-
-        this.http.post(this.url, amigo, { headers: headers })
-            .subscribe(res => {
-                console.log(res);
-                this.router.navigate(['/']);
-            });
+    salvar(amigo: Amigo): Observable<void> {
+        return this.http.post<void>(this.url, amigo);
     }
 
-    atualizar(amigo: Amigo) {
-
-        const headers: Headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        this.http.put(this.url + amigo.id, JSON.stringify(amigo), { headers: headers })
-            .subscribe(res => {
-                console.log(res);
-                this.router.navigate(['/']);
-            });
+    atualizar(amigo: Amigo): Observable<void> {
+        return this.http.put<void>(this.url + amigo.id, amigo);
     }
 
-    excluir(amigo: Amigo) {
-
-        this.http.delete(this.url + amigo.id)
-            .subscribe(res => {
-                console.log(res);
-            });
+    excluir(id: number): Observable<void> {
+        return this.http.delete<void>(this.url + id);
     }
 
-    buscarTodos(): ItemAmigo[] {
-        const itens: ItemAmigo[] = [];
-
-        const headers: Headers = new Headers();
-        headers.set('Access-Control-Allow-Origin', '*');
-        headers.set('Access-Control-Allow-Headers', '*');
-
-        this.http.get(this.url, { headers })
-            .subscribe(res => {
-                console.log(res);
-                const amigosResponse: Amigo[] = res.json();
-
-                amigosResponse.forEach(amigo => {
-                    const item: ItemAmigo = new ItemAmigo();
-                    item.amigo = amigo;
-                    item.hidden = true;
-                    itens.push(item);
-                });
-
-            });
-        return itens;
+    buscarTodos(): Observable<Amigo[]> {
+        return this.http.get<Amigo[]>(this.url);
     }
 
-    buscarAmigo(id: number): Amigo {
-        const amigo: Amigo = new Amigo();
-
-        this.http.get(this.url + id)
-            .subscribe(res => {
-                const temp: Amigo = res.json();
-
-                amigo.id = temp.id;
-                amigo.nome = temp.nome;
-            });
-        return amigo;
+    buscarAmigo(id: number): Observable<Amigo> {
+        return this.http.get<Amigo>(this.url + id);
     }
 }

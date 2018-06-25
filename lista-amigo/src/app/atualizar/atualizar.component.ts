@@ -1,39 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params} from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AmigoService } from '../services/amigo.service';
-import { Amigo } from '../listagem/Amigo';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-atualiza',
     styleUrls: ['./atualizar.component.css'],
     templateUrl: './atualizar.component.html',
-    providers: [ AmigoService ]
+    providers: [AmigoService]
 })
-export class AtualizarComponent{
+export class AtualizarComponent {
+    form: FormGroup;
 
-    activatedRoute: ActivatedRoute;
-    router: Router;
-    service: AmigoService;
-    amigo: Amigo;
-    
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private service: AmigoService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
 
-    constructor(activatedRoute: ActivatedRoute, router: Router, service: AmigoService){
-        this.service = service;
-        this.router = router;
-        this.activatedRoute = activatedRoute;
-
-        this.amigo = new Amigo();
-        this.amigo.id = -1;
-        this.amigo.nome = "";
+        this.form = this.fb.group({
+            id: new FormControl({ value: '', disabled: true }),
+            nome: new FormControl({ value: '' })
+        });
 
         this.activatedRoute.queryParams.subscribe(params => {
             const id: number = params['id'];
-            
-            this.amigo = this.service.buscarAmigo(id);
+
+            if (id) {
+                this.service.buscarAmigo(id).subscribe((amigo) => {
+                    this.form.patchValue(amigo);
+                });
+            }
         });
     }
 
-    salvar(){
-        this.service.atualizar(this.amigo);
+    salvar() {
+        this.service.atualizar(this.form.getRawValue()).subscribe(() => {
+            this.router.navigateByUrl('listagem');
+        });
     }
 }

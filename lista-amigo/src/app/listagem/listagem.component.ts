@@ -1,8 +1,14 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { ItemAmigo } from './ItemAmigo';
-import { Router } from '@angular/router';
-import { Amigo } from './Amigo';
+import { Component, OnInit } from '@angular/core';
 import { AmigoService } from '../services/amigo.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+// tslint:disable-next-line:angular-whitespace
+import { Amigo } from './Amigo';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../reducers';
+import { CarregaAmigos, ExcluirAmigo } from '../app.actions';
+import { selectTodosAmigos } from '../app.selectors';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-listagem',
@@ -10,42 +16,43 @@ import { AmigoService } from '../services/amigo.service';
   styleUrls: ['./listagem.component.css'],
   providers: [AmigoService]
 })
-export class ListagemComponent {
+export class ListagemComponent implements OnInit {
 
-  lestOpen: ItemAmigo = null;
-  service: AmigoService;
-  amigos: ItemAmigo[] = [];
-  router: Router;
+  amigos$: Observable<Amigo[]>;
+  lastOption = null;
 
-  constructor(service: AmigoService, router: Router) {
-    this.service = service;
-    this.router = router;
-
-    this.amigos = this.service.buscarTodos();
+  constructor(
+    private router: Router,
+    private store: Store<AppState>) {
   }
 
-  toggle(item: ItemAmigo) {
+  ngOnInit() {
+    this.store.dispatch(new CarregaAmigos());
+    this.amigos$ = this.store.pipe(
+      select(selectTodosAmigos)
+    );
+  }
 
-    if (this.lestOpen != null && this.lestOpen.hidden === false && this.lestOpen !== item) {
-      this.lestOpen.hidden = true;
+  toggle(opcoes) {
+    opcoes.hidden = !opcoes.hidden;
+
+    if (this.lastOption && this.lastOption !== opcoes) {
+      this.lastOption.hidden = true;
     }
 
-    item.hidden = !item.hidden;
-    this.lestOpen = item;
+    this.lastOption = opcoes;
   }
 
-  editar(item: ItemAmigo) {
-    this.toggle(item);
+  editar(amigo: Amigo, opcoes) {
+    opcoes.hidden = true;
 
-    this.router.navigate(['/atualizar'], { queryParams: { id: item.amigo.id } });
+    this.router.navigate(['/atualizar'], { queryParams: { id: amigo.id } });
   }
 
-  excluir(item: ItemAmigo) {
-    this.toggle(item);
+  excluir(amigo: Amigo, opcoes) {
+    opcoes.hidden = true;
 
-    this.service.excluir(item.amigo);
-
-    this.amigos.splice(this.amigos.indexOf(item), 1);
+    this.store.dispatch(new ExcluirAmigo({ amigoId: amigo.id }));
   }
 
   cadastrar() {

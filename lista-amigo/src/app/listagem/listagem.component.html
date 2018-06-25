@@ -1,15 +1,15 @@
 <app-cabecalho titulo="Amigos"></app-cabecalho>
 <section>
-    <div class="amigo-item" *ngFor="let item of amigos; let id = 'index'">
-        <label class="amigo-nome">{{item.amigo.nome}}</label>
+    <div class="amigo-item" *ngFor="let amigo of amigos$ | async; let id = 'index'">
+        <label class="amigo-nome">{{ amigo.nome }}</label>
         <div class="opcoes-container">
-            <div class="opcoes-botao" (click)="toggle(item)">
+            <div class="opcoes-botao" (click)="toggle(opcoes)">
                 <label>...</label>
             </div>
         </div>
-        <div [hidden]="item.hidden" class="opcoes-menu shadow">
-            <label (click)="editar(item)" class="opcoes-item">Editar</label>
-            <label (click)="excluir(item)" class="opcoes-item">Excluir</label>
+        <div #opcoes [hidden]="true" class="opcoes-menu shadow">
+            <label (click)="editar(amigo, opcoes)" class="opcoes-item">Editar</label>
+            <label (click)="excluir(amigo, opcoes)" class="opcoes-item">Excluir</label>
         </div>
     </div>
 </section>

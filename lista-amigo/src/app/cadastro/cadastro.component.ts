@@ -1,29 +1,33 @@
 import { Component } from '@angular/core';
-import { Amigo } from '../listagem/Amigo';
 import { AmigoService } from '../services/amigo.service';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-cadastro',
     styleUrls: ['./cadastro.component.css'],
     templateUrl: './cadastro.component.html',
-    providers: [ AmigoService ]
+    providers: [AmigoService]
 })
-export class CadastroComponent{
+export class CadastroComponent {
 
-    amigo: Amigo = new Amigo();
-    service: AmigoService;
+    form: FormGroup;
 
-    constructor(service: AmigoService){
-        this.service = service;
-
-        this.amigo.id = null;
-        this.amigo.nome = "";
+    constructor(
+        private service: AmigoService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
+        this.form = this.fb.group({
+            id: new FormControl(),
+            nome: new FormControl()
+        });
     }
 
-    salvar(nome: string){
-        console.log(nome);
-
-        this.service.salvar(this.amigo);
+    salvar() {
+        this.service.salvar(this.form.getRawValue()).subscribe(() => {
+            this.router.navigateByUrl('/');
+        });
     }
 }
 

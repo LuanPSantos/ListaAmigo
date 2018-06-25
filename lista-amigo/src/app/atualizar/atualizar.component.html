@@ -1,15 +1,16 @@
 <app-cabecalho titulo="Atualizar"></app-cabecalho>
 <section>
     <div class="conteiner">
-        <div>
-            <label class="id">ID</label>
-            <label class="id_valor">{{amigo.id}}</label>            
-        </div>
-        <div>
-            <label class="nome">Nome</label>
-            <!-- [value]="amigo.nome" (input)="amigo.nome = $event.target.value" -->
-            <input type="text" placeholder="..." [value]="amigo.nome" (input)="amigo.nome = $event.target.value"/>
-        </div>
+        <form [formGroup]="form">
+            <div>
+                <label class="id">ID</label>
+                <input  class="id_valor" type="text" formControlName="id">
+            </div>
+            <div>
+                <label class="nome">Nome</label>
+                <input type="text" placeholder="..." formControlName="nome" />
+            </div>
+        </form>
     </div>
 </section>
 <button (click)="salvar()" class="button">Salvar</button>
